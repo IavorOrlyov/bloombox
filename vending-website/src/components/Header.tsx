@@ -234,32 +234,22 @@ export function Header() {
         </div>
 
         {/* Video Section - Landscape orientation */}
-        <div className="relative max-w-5xl mx-auto mb-8">
-          <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
-            {/* Video placeholder - replace src with actual video URL */}
+        <div className="relative max-w-2xl mx-auto mb-8">
+          <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: "16/9" }}>
             <video
-              className="w-full h-full object-cover"
+              style={{
+                width: "100%",
+                height: "100%",
+                display: "block",
+                objectFit: "cover"
+              }}
               autoPlay
               muted
               loop
               playsInline
-              poster="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200&h=675&fit=crop"
             >
-              {/* Add your video source here */}
-              <source src="/assets/machine-video.mp4" type="video/mp4" />
-              {/* Fallback image if video doesn't load */}
-              <img
-                src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200&h=675&fit=crop"
-                alt="BloomBox Vending Machine"
-                className="w-full h-full object-cover"
-              />
+              <source src="/assets/videos/welcome-video.mp4" type="video/mp4" />
             </video>
-            {/* Overlay for video loading state */}
-            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#6c704c]/5 to-[#cd3a6a]/5 pointer-events-none">
-              <div className="text-center text-[#6c704c]/60 font-playfair">
-                <p className="text-sm">Видео на машината</p>
-              </div>
-            </div>
           </div>
           {/* Decorative blurs */}
           <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#cd3a6a]/20 rounded-full blur-3xl"></div>
