@@ -61,7 +61,7 @@ export function FAQ() {
                   />
                 </button>
                 {openIndex === index && (
-                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                  <div className="px-6 py-4 border-t border-gray-200">
                     <p className="font-playfair text-gray-600 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}
