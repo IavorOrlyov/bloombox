@@ -55,9 +55,9 @@ export function Header() {
           <div
             className="rounded-full flex items-center justify-center bg-white overflow-hidden"
             style={{
-              width: "70px",
-              height: "70px",
-              border: "2px solid rgba(108, 112, 76, 0.3)",
+              width: "80px",
+              height: "80px",
+              border: "1px solid rgba(108, 112, 76, 0.3)",
               boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               flexShrink: 0,
             }}
@@ -66,9 +66,9 @@ export function Header() {
               src="/assets/logo.png"
               alt="BloomBox Logo"
               style={{
-                width: "55px",
-                height: "55px",
-                objectFit: "contain",
+                width: "130px",
+                height: "130px",
+                maxWidth: "auto"
               }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -114,8 +114,8 @@ export function Header() {
                 position: "absolute",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "70px",
-                height: "70px",
+                width: "100px",
+                height: "100px",
                 pointerEvents: "none",
               }}
             ></div>
