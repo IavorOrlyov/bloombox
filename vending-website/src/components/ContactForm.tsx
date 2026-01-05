@@ -29,7 +29,7 @@ export function ContactForm() {
         <div className="max-w-2xl mx-auto">
           {!formSubmitted ? (
             <>
-              <h2 className="font-playfair text-center text-[#6c704c] mb-8 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
+              <h2 className="font-playfair text-center text-[#6c704c] mb-8 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700, fontSize: "24px" }}>
                 Изпратете запитване за вендинг машина за цветя
               </h2>
               

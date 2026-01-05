@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Header } from './components/Header';
 import { WhyChooseUs } from './components/WhyChooseUs';
+import { FlowerGallery } from './components/FlowerGallery';
 import { Technology } from './components/Technology';
 import { FAQ } from './components/FAQ';
 import { ContactForm } from './components/ContactForm';
@@ -11,8 +12,9 @@ export default function App() {
     <div className="min-h-screen bg-white">
       <Header />
       <WhyChooseUs />
-      <Technology />
+      <FlowerGallery />
       <FAQ />
+      <Technology />
       <ContactForm />
       <Footer />
     </div>

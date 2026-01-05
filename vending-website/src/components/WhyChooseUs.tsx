@@ -10,7 +10,7 @@ export function WhyChooseUs() {
     <section id="why-choose" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-playfair text-center text-[#6c704c] mb-12 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
+          <h2 className="font-playfair text-center text-[#6c704c] mb-12" style={{ fontWeight: 700, fontSize: "24px" }}>
             Защо да изберете BloomBox Vending?
           </h2>
           
@@ -35,7 +35,7 @@ export function WhyChooseUs() {
             </div>
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <button
               onClick={scrollToForm}
               className="font-playfair bg-[#cd3a6a] text-white px-8 py-3 rounded-lg hover:bg-[#cd3a6a]/90 transition-colors inline-flex items-center gap-2 cursor-pointer font-semibold"

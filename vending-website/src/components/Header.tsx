@@ -66,9 +66,9 @@ export function Header() {
               src="/assets/logo.png"
               alt="BloomBox Logo"
               style={{
-                width: "130px",
-                height: "130px",
-                maxWidth: "auto"
+                width: "120px",
+                height: "120px",
+                objectFit: "contain"
               }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -221,13 +221,13 @@ export function Header() {
       {/* Hero Section */}
       <div
         className="container mx-auto px-4 py-12 md:py-16"
-        style={{ marginTop: "32px" }}
+        style={{ marginTop: "32px", paddingBottom: "32px" }}
       >
         {/* Hero Title */}
         <div className="text-center mb-8">
           <h1
-            className="font-playfair text-[#6c704c] text-3xl md:text-4xl lg:text-5xl leading-tight"
-            style={{ fontWeight: 700 }}
+            className="font-playfair text-[#6c704c] leading-tight"
+            style={{ fontWeight: 700, fontSize: "24px" }}
           >
             Вендинг машини за свежи цветя - 24/7 продажби без персонал
           </h1>
