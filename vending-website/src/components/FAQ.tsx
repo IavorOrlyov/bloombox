@@ -39,7 +39,7 @@ export function FAQ() {
     <section id="faq" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-center text-[#6c704c] mb-12">
+          <h2 className="font-playfair text-center text-[#6c704c] mb-12 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
             Често задавани въпроси
           </h2>
 
@@ -53,16 +53,16 @@ export function FAQ() {
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors text-left cursor-pointer"
                 >
-                  <span className="text-[#6c704c]">{faq.question}</span>
+                  <span className="font-playfair text-[#6c704c] font-semibold">{faq.question}</span>
                   <ChevronDown
-                    className={`w-5 h-5 text-[#cd3a6a] transition-transform ${
+                    className={`w-5 h-5 text-[#cd3a6a] transition-transform flex-shrink-0 ml-4 ${
                       openIndex === index ? 'rotate-180' : ''
                     }`}
                   />
                 </button>
                 {openIndex === index && (
                   <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
-                    <p className="text-gray-600">{faq.answer}</p>
+                    <p className="font-playfair text-gray-600 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}
               </div>

@@ -29,13 +29,13 @@ export function ContactForm() {
         <div className="max-w-2xl mx-auto">
           {!formSubmitted ? (
             <>
-              <h2 className="text-center text-[#6c704c] mb-8">
+              <h2 className="font-playfair text-center text-[#6c704c] mb-8 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
                 Изпратете запитване за вендинг машина за цветя
               </h2>
               
               <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-[#6c704c] mb-2">
+                  <label htmlFor="name" className="font-playfair block text-[#6c704c] mb-2 font-medium">
                     Име и фамилия <span className="text-[#cd3a6a]">*</span>
                   </label>
                   <input
@@ -45,12 +45,12 @@ export function ContactForm() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
+                    className="font-playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-[#6c704c] mb-2">
+                  <label htmlFor="email" className="font-playfair block text-[#6c704c] mb-2 font-medium">
                     Имейл <span className="text-[#cd3a6a]">*</span>
                   </label>
                   <input
@@ -60,12 +60,12 @@ export function ContactForm() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
+                    className="font-playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="city" className="block text-[#6c704c] mb-2">
+                  <label htmlFor="city" className="font-playfair block text-[#6c704c] mb-2 font-medium">
                     Град
                   </label>
                   <input
@@ -74,12 +74,12 @@ export function ContactForm() {
                     name="city"
                     value={formData.city}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
+                    className="font-playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-[#6c704c] mb-2">
+                  <label htmlFor="phone" className="font-playfair block text-[#6c704c] mb-2 font-medium">
                     Телефонен номер
                   </label>
                   <input
@@ -88,12 +88,12 @@ export function ContactForm() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
+                    className="font-playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-[#6c704c] mb-2">
+                  <label htmlFor="message" className="font-playfair block text-[#6c704c] mb-2 font-medium">
                     Вашето съобщение
                   </label>
                   <textarea
@@ -102,13 +102,13 @@ export function ContactForm() {
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent resize-none"
+                    className="font-playfair w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6c704c] focus:border-transparent resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#cd3a6a] text-white py-3 rounded-lg hover:bg-[#cd3a6a]/90 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  className="font-playfair w-full bg-[#cd3a6a] text-white py-3 rounded-lg hover:bg-[#cd3a6a]/90 transition-colors flex items-center justify-center gap-2 cursor-pointer font-semibold"
                 >
                   Изпрати запитване
                   <Send className="w-5 h-5" />
@@ -120,10 +120,10 @@ export function ContactForm() {
               <div className="w-16 h-16 bg-[#6c704c] rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-[#6c704c] mb-3">
+              <h3 className="font-playfair text-[#6c704c] mb-3 text-xl font-semibold">
                 Благодарим за запитването!
               </h3>
-              <p className="text-gray-600">
+              <p className="font-playfair text-gray-600">
                 Ще се свържем с вас в рамките на 24 часа.
               </p>
             </div>
