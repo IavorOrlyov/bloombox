@@ -74,7 +74,7 @@ export function Technology() {
   };
 
   return (
-    <section id="technology" className="py-10 bg-[#f4f0ed]" style={{ paddingBottom: "80px", backgroundColor: "#f3f1ed"}}>
+    <section id="technology" className="py-10 bg-[#f4f0ed]" style={{ paddingBottom: "80px", paddingTop: "40px", backgroundColor: "#f3f1ed"}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div style={{ display: "flex", flexDirection: isLargeScreen ? "row" : "column", gap: "2rem", alignItems: "center" }}>
