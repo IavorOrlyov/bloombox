@@ -53,7 +53,12 @@ export function FAQ() {
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition-colors text-left cursor-pointer"
                 >
-                  <span className="font-playfair text-[#6c704c] font-semibold">{faq.question}</span>
+                  <span
+                    className="font-playfair font-semibold"
+                    style={{ color: openIndex === index ? '#919951' : '#6c704c' }}
+                  >
+                    {faq.question}
+                  </span>
                   <ChevronDown
                     className={`w-5 h-5 text-[#cd3a6a] transition-transform flex-shrink-0 ml-4 ${
                       openIndex === index ? 'rotate-180' : ''
