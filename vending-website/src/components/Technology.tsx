@@ -45,12 +45,24 @@ const carouselImages = [
 
 export function Technology() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
     }, 4000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1280);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   const nextImage = () => {
@@ -65,9 +77,9 @@ export function Technology() {
     <section id="technology" className="py-10 bg-[#f4f0ed]" style={{ paddingBottom: "80px", backgroundColor: "#f3f1ed"}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-start" style={{ display: "flex", flexDirection: "row", gap: "2rem", alignItems: "center" }}>
+          <div style={{ display: "flex", flexDirection: isLargeScreen ? "row" : "column", gap: "2rem", alignItems: "center" }}>
             {/* Left Side - Carousel (40%) */}
-            <div style={{ width: "40%", flexShrink: 0, display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div style={{ width: isLargeScreen ? "40%" : "100%", flexShrink: 0, display: "flex", justifyContent: "center", alignItems: "center" }}>
               <div className="relative bg-gradient-to-br from-sky-200 to-[#a8b864] rounded-3xl overflow-hidden shadow-2xl" style={{ width: "100%", maxWidth: "400px", height: "500px" }}>
                 <img
                   src={carouselImages[currentImageIndex]}
@@ -141,7 +153,7 @@ export function Technology() {
             </div>
 
             {/* Right Side - Header and Feature Cards (60%) */}
-            <div style={{ width: "60%", flexGrow: 1 }}>
+            <div style={{ width: isLargeScreen ? "60%" : "100%", flexGrow: 1 }}>
               <div className="mb-8 text-center">
                 <h2 className="font-playfair text-[#6c704c] mb-3" style={{ fontWeight: 300, fontSize: "72px", lineHeight: "1.2" }}>
                   <div>Нашата <span style={{ fontWeight: 400, fontStyle: "italic" }}>HIGH-</span></div>
@@ -153,7 +165,7 @@ export function Technology() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {features.map((feature, index) => (
                 <div
                   key={index}
