@@ -11,22 +11,35 @@ export function Footer() {
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Logo - Clickable to go home */}
           <div>
-            <button 
+            <button
               onClick={scrollToTop}
               className="flex items-center gap-3 mb-4 cursor-pointer hover:opacity-80 transition-opacity"
             >
-              <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center overflow-hidden border border-white/20">
-                <img 
-                  src="/assets/logo.png" 
-                  alt="BloomBox Logo" 
-                  className="w-8 h-8 object-contain"
+              <div
+                className="rounded-full flex items-center justify-center bg-white overflow-hidden"
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  border: "1px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src="/assets/logo.png"
+                  alt="BloomBox Logo"
+                  style={{
+                    width: "120px",
+                    height: "120px",
+                    objectFit: "contain",
+                  }}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                   }}
                 />
               </div>
-              <span className="font-brand text-lg tracking-[0.25em]">BloomBox Vending</span>
+              <span className="font-brand text-lg tracking-[0.25em]">BLOOMBOX VENDING</span>
             </button>
             <p className="font-playfair text-white/80">
               Вашият надежден партньор в продажбата на цветя 24/7
