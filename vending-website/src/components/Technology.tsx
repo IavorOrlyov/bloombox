@@ -38,7 +38,7 @@ export function Technology() {
     <section id="technology" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-playfair text-center text-[#6c704c] mb-16 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
+          <h2 className="font-playfair text-center text-[#6c704c] mb-16" style={{ fontWeight: 700, fontSize: "24px" }}>
             Нашата high-end технология
           </h2>
 
@@ -48,12 +48,14 @@ export function Technology() {
                 key={index}
                 className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-[#6c704c] to-[#6c704c]/80 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-white" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#6c704c] to-[#6c704c]/80 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-playfair text-[#6c704c] text-lg font-semibold">
+                    {feature.title}
+                  </h3>
                 </div>
-                <h3 className="font-playfair text-[#6c704c] mb-3 text-lg font-semibold">
-                  {feature.title}
-                </h3>
                 <p className="font-playfair text-gray-600 text-sm leading-relaxed">
                   {feature.description}
                 </p>

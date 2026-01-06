@@ -39,7 +39,7 @@ export function FAQ() {
     <section id="faq" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-playfair text-center text-[#6c704c] mb-12 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700 }}>
+          <h2 className="font-playfair text-center text-[#6c704c] mb-12 text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 700, fontSize: "24px" }}>
             Често задавани въпроси
           </h2>
 
@@ -61,7 +61,7 @@ export function FAQ() {
                   />
                 </button>
                 {openIndex === index && (
-                  <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
+                  <div className="px-6 py-4 border-t border-gray-200">
                     <p className="font-playfair text-gray-600 leading-relaxed">{faq.answer}</p>
                   </div>
                 )}
