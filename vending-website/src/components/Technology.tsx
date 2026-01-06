@@ -62,7 +62,7 @@ export function Technology() {
   };
 
   return (
-    <section id="technology" className="py-10 bg-[#f4f0ed]" style={{ paddingBottom: "80px"}}>
+    <section id="technology" className="py-10 bg-[#f4f0ed]" style={{ paddingBottom: "80px", backgroundColor: "#f3f1ed"}}>
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-start" style={{ display: "flex", flexDirection: "row", gap: "2rem", alignItems: "center" }}>
@@ -82,15 +82,47 @@ export function Technology() {
                 {/* Carousel Controls */}
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all cursor-pointer"
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    height: "100%",
+                    width: "30px",
+                    backgroundColor: "#6c704c",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 10,
+                    transition: "opacity 0.3s"
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = "0.9"}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
                 >
-                  <ChevronLeft className="w-6 h-6 text-[#6c704c]" />
+                  <ChevronLeft style={{ width: "32px", height: "32px", color: "#ffffff" }} />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all cursor-pointer"
+                  style={{
+                    position: "absolute",
+                    right: 0,
+                    top: 0,
+                    height: "100%",
+                    width: "30px",
+                    backgroundColor: "#6c704c",
+                    border: "none",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 10,
+                    transition: "opacity 0.3s"
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = "0.9"}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
                 >
-                  <ChevronRight className="w-6 h-6 text-[#6c704c]" />
+                  <ChevronRight style={{ width: "32px", height: "32px", color: "#ffffff" }} />
                 </button>
 
                 {/* Carousel Indicators */}
