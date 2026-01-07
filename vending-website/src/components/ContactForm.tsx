@@ -19,7 +19,7 @@ export function ContactForm() {
     setSubmitError("");
 
     // Replace YOUR_EMAIL with your actual email address
-    const formAction = "https://formsubmit.co/4354eef68691810c497a5dbb92ddf4f1";
+    const formAction = "https://formsubmit.co/49ed990fe49b447513e3d6ce722da2a4";
 
     try {
       const form = e.target as HTMLFormElement;
@@ -89,7 +89,7 @@ export function ContactForm() {
 
               <form
                 onSubmit={handleSubmit}
-                action="https://formsubmit.co/YOUR_EMAIL"
+                action="https://formsubmit.co/49ed990fe49b447513e3d6ce722da2a4"
                 method="POST"
                 className="bg-white p-8 rounded-xl shadow-lg space-y-6"
               >
