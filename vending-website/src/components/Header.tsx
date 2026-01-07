@@ -63,7 +63,7 @@ export function Header() {
             }}
           >
             <img
-              src="/assets/logo.png"
+              src="assets/logo.png"
               alt="BloomBox Logo"
               style={{
                 width: "120px",
@@ -248,7 +248,7 @@ export function Header() {
               loop
               playsInline
             >
-              <source src="/assets/videos/welcome-video.mp4" type="video/mp4" />
+              <source src="assets/videos/welcome-video.mp4" type="video/mp4" />
             </video>
           </div>
           {/* Decorative blurs */}

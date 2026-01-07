@@ -7,11 +7,11 @@ export function FlowerGallery() {
   };
 
   const images = [
-    { src: '/assets/flowers/flowers1.jpg', alt: 'Букет с лилиуми и рози' },
-    { src: '/assets/flowers/flowers2.jpg', alt: 'Букет в кутия' },
-    { src: '/assets/flowers/flowers3.jpg', alt: 'Букет червени рози' },
-    { src: '/assets/flowers/flowers4.jpg', alt: 'Букет в черна кутия' },
-    { src: '/assets/flowers/flowers5.jpg', alt: 'Букет в синя кутия' },
+    { src: 'assets/flowers/flowers1.jpg', alt: 'Букет с лилиуми и рози' },
+    { src: 'assets/flowers/flowers2.jpg', alt: 'Букет в кутия' },
+    { src: 'assets/flowers/flowers3.jpg', alt: 'Букет червени рози' },
+    { src: 'assets/flowers/flowers4.jpg', alt: 'Букет в черна кутия' },
+    { src: 'assets/flowers/flowers5.jpg', alt: 'Букет в синя кутия' },
   ];
 
   return (

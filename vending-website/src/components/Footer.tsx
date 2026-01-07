@@ -26,7 +26,7 @@ export function Footer() {
                 }}
               >
                 <img
-                  src="/assets/logo.png"
+                  src="assets/logo.png"
                   alt="BloomBox Logo"
                   style={{
                     width: "120px",

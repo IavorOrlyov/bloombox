@@ -35,12 +35,12 @@ const features = [
 ];
 
 const carouselImages = [
-  '/assets/1.png',
-  '/assets/2.png',
-  '/assets/3.png',
-  '/assets/4.png',
-  '/assets/7.png',
-  '/assets/5.png',
+  'assets/1.png',
+  'assets/2.png',
+  'assets/3.png',
+  'assets/4.png',
+  'assets/7.png',
+  'assets/5.png',
 ];
 
 export function Technology() {
