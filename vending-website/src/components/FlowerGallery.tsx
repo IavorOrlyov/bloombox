@@ -1,23 +1,25 @@
+import React from "react";
+
 export function FlowerGallery() {
   const scrollToForm = () => {
-    const formElement = document.getElementById('contact-form');
+    const formElement = document.getElementById("contact-form");
     if (formElement) {
-      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      formElement.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
   const images = [
-    { src: 'assets/flowers/flowers1.jpg', alt: 'Букет с лилиуми и рози' },
-    { src: 'assets/flowers/flowers2.jpg', alt: 'Букет в кутия' },
-    { src: 'assets/flowers/flowers3.jpg', alt: 'Букет червени рози' },
-    { src: 'assets/flowers/flowers4.jpg', alt: 'Букет в черна кутия' },
-    { src: 'assets/flowers/flowers5.jpg', alt: 'Букет в синя кутия' },
+    { src: "assets/flowers/flowers1.jpg", alt: "Букет с лилиуми и рози" },
+    { src: "assets/flowers/flowers2.jpg", alt: "Букет в кутия" },
+    { src: "assets/flowers/flowers3.jpg", alt: "Букет червени рози" },
+    { src: "assets/flowers/flowers4.jpg", alt: "Букет в черна кутия" },
+    { src: "assets/flowers/flowers5.jpg", alt: "Букет в синя кутия" },
   ];
 
   return (
-    <section className="py-16" style={{backgroundColor: "#f4f0ed"}}>
+    <section className="py-16" style={{ backgroundColor: "#f4f0ed" }}>
       <div className="container mx-auto px-4">
-        <div className="mx-auto">
+        <div className="max-w-4xl mx-auto">
           {/* Image Gallery */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {images.map((image, index) => (
@@ -32,7 +34,7 @@ export function FlowerGallery() {
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
+                    target.style.display = "none";
                   }}
                 />
               </div>
@@ -48,12 +50,31 @@ export function FlowerGallery() {
           </h2>
 
           {/* Description */}
-          <p className="font-playfair text-center text-gray-600 max-w-4xl mx-auto mb-8 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis erat et quam iaculis faucibus at sit amet nibh. Vestibulum dignissim lectus in ligula rhoncus, et bibendum risus dictum. Pellentesque condimentum arcu id dapibus tempor. Pellentesque venenatis nec magna nec finibus.
-          </p>
+          <div className="grid md:grid-cols-2 gap-8 text-gray-600">
+            <div className="space-y-4">
+              <p className="font-playfair leading-relaxed">
+                BloomBox Vending е вашият надежден партньор в продажбата на
+                цветя 24/7. Ние комбинираме модерни вендинг технологии с
+                практически опит в управлението на цветни автомати — така че да
+                получите решение, което работи безотказно, поддържа цветята
+                свежи и привлича клиенти с изчистен премиум дизайн.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <p className="font-playfair leading-relaxed">
+                Машините, които предлагаме, са внимателно подбрани за българския
+                пазар и се отличават с интелигентно управление, стабилна
+                температура, удобни методи на плащане и ниски разходи за
+                поддръжка. От консултация и брандинг до доставка, монтаж и
+                гаранция – ние сме до вас на всяка стъпка, за да създадете
+                успешен и рентабилен бизнес.
+              </p>
+            </div>
+          </div>
 
           {/* CTA Button */}
-          <div className="text-center">
+          <div className="text-center" style={{ marginTop: "40px" }}>
             <button
               onClick={scrollToForm}
               className="font-playfair bg-[#cd3a6a] text-white px-8 py-3 rounded-full hover:bg-[#cd3a6a]/90 transition-colors inline-flex items-center gap-2 cursor-pointer font-semibold uppercase text-sm tracking-wide"
