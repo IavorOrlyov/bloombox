@@ -68,7 +68,7 @@ export function Header() {
               style={{
                 width: "120px",
                 height: "120px",
-                objectFit: "contain"
+                objectFit: "contain",
               }}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
@@ -235,20 +235,23 @@ export function Header() {
 
         {/* Video Section - Landscape orientation */}
         <div className="relative max-w-2xl mx-auto mb-8">
-          <div className="rounded-2xl overflow-hidden shadow-2xl" style={{ aspectRatio: "16/9" }}>
+          <div
+            className="rounded-2xl overflow-hidden shadow-2xl"
+            style={{ aspectRatio: "16/9" }}
+          >
             <video
               style={{
                 width: "100%",
                 height: "100%",
                 display: "block",
-                objectFit: "cover"
+                objectFit: "cover",
               }}
               autoPlay
               muted
               loop
               playsInline
             >
-              <source src="assets/videos/welcome-video.mp4" type="video/mp4" />
+              <source src="assets/videos/video-homepage.mp4" type="video/mp4" />
             </video>
           </div>
           {/* Decorative blurs */}
