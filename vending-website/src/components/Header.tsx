@@ -36,8 +36,15 @@ export function Header() {
 
   return (
     <header className="relative bg-gradient-to-br from-[#6c704c]/10 to-[#cd3a6a]/10 overflow-hidden">
-      {/* Fixed Logo - Stays static while scrolling */}
+      <style>{`
+        .desktop-logo { display: none; }
+        @media (min-width: 886px) {
+          .desktop-logo { display: block; }
+        }
+      `}</style>
+      {/* Fixed Logo - Desktop Only - Stays static while scrolling */}
       <div
+        className="desktop-logo"
         style={{
           position: "fixed",
           top: "0",
@@ -49,12 +56,27 @@ export function Header() {
       >
         <button
           onClick={scrollToTop}
-          className="flex items-center cursor-pointer hover:opacity-80 transition-opacity"
-          style={{ pointerEvents: "auto" }}
+          style={{
+            pointerEvents: "auto",
+            display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
+            transition: "opacity 0.3s",
+            border: "none",
+            background: "none",
+            padding: 0,
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
         >
           <div
-            className="rounded-full flex items-center justify-center bg-white overflow-hidden"
             style={{
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "white",
+              overflow: "hidden",
               width: "100px",
               height: "100px",
               border: "1px solid rgba(108, 112, 76, 0.3)",
@@ -88,14 +110,14 @@ export function Header() {
         }}
       >
         <div
-          className="container mx-auto px-4"
+          className="container px-4"
           style={{ paddingTop: "12px", paddingBottom: "12px" }}
         >
           <div className="flex items-center relative">
             {/* Left Side - Bloombox Vending Text */}
             <style>{`
               .brand-text-mobile { font-size: 18px !important; letter-spacing: 0.15em !important; }
-              @media (min-width: 768px) {
+              @media (min-width: 886px) {
                 .brand-text-mobile { font-size: 22px !important; letter-spacing: 0.2em !important; }
               }
             `}</style>
@@ -113,8 +135,9 @@ export function Header() {
               </button>
             </div>
 
-            {/* Center - Spacer for logo (invisible, maintains layout) */}
+            {/* Center - Spacer for logo (invisible, maintains layout on desktop) */}
             <div
+              className="desktop-logo"
               style={{
                 position: "absolute",
                 left: "50%",
@@ -225,9 +248,74 @@ export function Header() {
 
       {/* Hero Section */}
       <div
-        className="container mx-auto px-4 py-12 md:py-16"
-        style={{ marginTop: "32px", paddingBottom: "32px" }}
+        className="container mx-auto px-4 py-8 md:py-16"
+        style={{ paddingBottom: "32px" }}
       >
+        {/* Mobile Logo - Sticky, scrolls then sticks at top */}
+        <style>{`
+          .mobile-logo { display: block; }
+          @media (min-width: 886px) {
+            .mobile-logo { display: none; }
+          }
+        `}</style>
+        <div
+          className="mobile-logo"
+          style={{
+            position: "sticky",
+            top: "0px",
+            zIndex: 90,
+            paddingTop: "8px",
+            paddingBottom: "8px",
+            textAlign: "center",
+            marginBottom: "24px",
+          }}
+        >
+          <button
+            onClick={scrollToTop}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              cursor: "pointer",
+              transition: "opacity 0.3s",
+              border: "none",
+              background: "none",
+              padding: 0,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            <div
+              style={{
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "white",
+                overflow: "hidden",
+                width: "80px",
+                height: "80px",
+                border: "1px solid rgba(108, 112, 76, 0.3)",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                flexShrink: 0,
+              }}
+            >
+              <img
+                src="assets/bloombox-logo.svg"
+                alt="BloomBox Logo"
+                style={{
+                  width: "56px",
+                  height: "56px",
+                  objectFit: "contain",
+                }}
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                }}
+              />
+            </div>
+          </button>
+        </div>
+
         {/* Hero Title */}
         <div className="text-center mb-8">
           <h1
