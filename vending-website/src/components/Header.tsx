@@ -102,7 +102,12 @@ export function Header() {
             <div className="flex items-center" style={{ flex: "0 0 auto" }}>
               <button
                 onClick={scrollToTop}
-                className="brand-text-mobile font-brand text-[#6c704c] cursor-pointer hover:opacity-80 transition-opacity whitespace-nowrap"
+                className="brand-text-mobile text-[#6c704c] cursor-pointer hover:opacity-80 transition-opacity whitespace-nowrap"
+                style={{
+                  fontFamily: "Papyrus, fantasy",
+                  fontWeight: 400,
+                  textAlign: "left",
+                }}
               >
                 BLOOMBOX VENDING
               </button>
