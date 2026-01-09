@@ -44,7 +44,7 @@ export function FlowerGallery() {
           {/* Title */}
           <h2
             className="font-playfair text-center text-[#6c704c] mb-8"
-            style={{ fontWeight: 700, fontSize: "36px" }}
+            style={{ fontWeight: 700, fontSize: "24px" }}
           >
             Защо да изберете Bloombox Vending
           </h2>
