@@ -55,19 +55,19 @@ export function Header() {
           <div
             className="rounded-full flex items-center justify-center bg-white overflow-hidden"
             style={{
-              width: "80px",
-              height: "80px",
+              width: "100px",
+              height: "100px",
               border: "1px solid rgba(108, 112, 76, 0.3)",
               boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
               flexShrink: 0,
             }}
           >
             <img
-              src="assets/logo.png"
+              src="assets/bloombox-logo.svg"
               alt="BloomBox Logo"
               style={{
-                width: "120px",
-                height: "120px",
+                width: "70px",
+                height: "70px",
                 objectFit: "contain",
               }}
               onError={(e) => {
@@ -114,8 +114,8 @@ export function Header() {
                 position: "absolute",
                 left: "50%",
                 transform: "translateX(-50%)",
-                width: "100px",
-                height: "100px",
+                width: "120px",
+                height: "120px",
                 pointerEvents: "none",
               }}
             ></div>
