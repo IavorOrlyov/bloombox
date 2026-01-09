@@ -128,7 +128,7 @@ export function Header() {
         }}
       >
         <div
-          className="container px-4"
+          className="container mx-auto px-4"
           style={{ paddingTop: "12px", paddingBottom: "12px" }}
         >
           <div className="flex items-center relative">
@@ -298,9 +298,7 @@ export function Header() {
             transform: logoFixed ? "translateX(-50%)" : "none",
             zIndex: 90,
             paddingTop: "8px",
-            paddingBottom: "8px",
             textAlign: "center",
-            marginBottom: logoFixed ? "0px" : "24px",
             width: logoFixed ? "auto" : "100%",
           }}
         >
@@ -351,7 +349,13 @@ export function Header() {
         </div>
 
         {/* Hero Title */}
-        <div className="text-center mb-8">
+        <style>{`
+          .hero-title-spacing { margin-top: 0px; }
+          @media (min-width: 886px) {
+            .hero-title-spacing { margin-top: 48px; }
+          }
+        `}</style>
+        <div className="text-center mb-8 hero-title-spacing">
           <h1
             className="font-playfair text-[#6c704c] leading-tight"
             style={{ fontWeight: 700, fontSize: "24px" }}

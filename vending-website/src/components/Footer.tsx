@@ -34,11 +34,11 @@ export function Footer() {
                 }}
               >
                 <img
-                  src="assets/logo.png"
+                  src="assets/bloombox-logo.svg"
                   alt="BloomBox Logo"
                   style={{
-                    width: "120px",
-                    height: "120px",
+                    width: "700px",
+                    height: "70px",
                     objectFit: "contain",
                   }}
                   onError={(e) => {
