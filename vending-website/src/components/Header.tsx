@@ -1,10 +1,28 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [logoFixed, setLogoFixed] = useState(false);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const logoPlaceholderRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (logoPlaceholderRef.current) {
+        const rect = logoPlaceholderRef.current.getBoundingClientRect();
+        // When the logo's natural position reaches 2px from top, make it fixed
+        setLogoFixed(rect.top <= 2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -251,23 +269,39 @@ export function Header() {
         className="container mx-auto px-4 py-8 md:py-16"
         style={{ paddingBottom: "32px" }}
       >
-        {/* Mobile Logo - Sticky, scrolls then sticks at top */}
+        {/* Mobile Logo - Scrolls then sticks at top */}
         <style>{`
           .mobile-logo { display: block; }
           @media (min-width: 886px) {
             .mobile-logo { display: none; }
           }
         `}</style>
+
+        {/* Placeholder to mark natural position */}
         <div
+          ref={logoPlaceholderRef}
           className="mobile-logo"
           style={{
-            position: "sticky",
-            top: "0px",
+            height: logoFixed ? "96px" : "0px", // Height when fixed (80px logo + 16px padding)
+            marginBottom: logoFixed ? "24px" : "0px",
+          }}
+        />
+
+        {/* Actual logo that becomes fixed */}
+        <div
+          ref={logoRef}
+          className="mobile-logo"
+          style={{
+            position: logoFixed ? "fixed" : "relative",
+            top: logoFixed ? "2px" : "0px",
+            left: logoFixed ? "50%" : "auto",
+            transform: logoFixed ? "translateX(-50%)" : "none",
             zIndex: 90,
             paddingTop: "8px",
             paddingBottom: "8px",
             textAlign: "center",
-            marginBottom: "24px",
+            marginBottom: logoFixed ? "0px" : "24px",
+            width: logoFixed ? "auto" : "100%",
           }}
         >
           <button
