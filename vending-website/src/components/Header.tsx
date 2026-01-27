@@ -1,9 +1,12 @@
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import React from "react";
 
 export function Header() {
+  const { pathname } = useLocation();
+  const isPrivacyPage = pathname === "/privacy";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [logoFixed, setLogoFixed] = useState(false);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -11,18 +14,17 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (logoPlaceholderRef.current) {
-        const rect = logoPlaceholderRef.current.getBoundingClientRect();
-        // When the logo's natural position reaches 2px from top, make it fixed
-        setLogoFixed(rect.top <= 2);
-      }
+      if (isPrivacyPage || !logoPlaceholderRef.current) return;
+      const rect = logoPlaceholderRef.current.getBoundingClientRect();
+      // When the logo's natural position reaches 2px from top, make it fixed
+      setLogoFixed(rect.top <= 2);
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Check initial position
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isPrivacyPage]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -264,147 +266,149 @@ export function Header() {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <div
-        className="container mx-auto px-4 py-8 md:py-16"
-        style={{ paddingBottom: "32px" }}
-      >
-        {/* Mobile Logo - Scrolls then sticks at top */}
-        <style>{`
-          .mobile-logo { display: block; }
-          @media (min-width: 886px) {
-            .mobile-logo { display: none; }
-          }
-        `}</style>
-
-        {/* Placeholder to mark natural position */}
+      {/* Hero Section - hidden on Privacy page */}
+      {!isPrivacyPage && (
         <div
-          ref={logoPlaceholderRef}
-          className="mobile-logo"
-          style={{
-            height: logoFixed ? "96px" : "0px", // Height when fixed (80px logo + 16px padding)
-            marginBottom: logoFixed ? "24px" : "0px",
-          }}
-        />
-
-        {/* Actual logo that becomes fixed */}
-        <div
-          ref={logoRef}
-          className="mobile-logo"
-          style={{
-            position: logoFixed ? "fixed" : "relative",
-            top: logoFixed ? "2px" : "0px",
-            left: logoFixed ? "50%" : "auto",
-            transform: logoFixed ? "translateX(-50%)" : "none",
-            zIndex: 90,
-            paddingTop: "8px",
-            textAlign: "center",
-            width: logoFixed ? "auto" : "100%",
-          }}
+          className="container mx-auto px-4 py-8 md:py-16"
+          style={{ paddingBottom: "32px" }}
         >
-          <button
-            onClick={scrollToTop}
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              cursor: "pointer",
-              transition: "opacity 0.3s",
-              border: "none",
-              background: "none",
-              padding: 0,
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
-            <div
-              style={{
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "white",
-                overflow: "hidden",
-                width: "80px",
-                height: "80px",
-                border: "1px solid rgba(108, 112, 76, 0.3)",
-                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                flexShrink: 0,
-              }}
-            >
-              <img
-                src="assets/bloombox-logo.svg"
-                alt="BloomBox Logo"
-                style={{
-                  width: "56px",
-                  height: "56px",
-                  objectFit: "contain",
-                }}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = "none";
-                }}
-              />
-            </div>
-          </button>
-        </div>
+          {/* Mobile Logo - Scrolls then sticks at top */}
+          <style>{`
+            .mobile-logo { display: block; }
+            @media (min-width: 886px) {
+              .mobile-logo { display: none; }
+            }
+          `}</style>
 
-        {/* Hero Title */}
-        <style>{`
-          .hero-title-spacing { margin-top: 0px; }
-          @media (min-width: 886px) {
-            .hero-title-spacing { margin-top: 48px; }
-          }
-        `}</style>
-        <div className="text-center mb-8 hero-title-spacing">
-          <h1
-            className="font-playfair text-[#6c704c] leading-tight"
-            style={{ fontWeight: 700, fontSize: "24px" }}
-          >
-            Вендинг машини за свежи цветя - 24/7 продажби без персонал
-          </h1>
-        </div>
-
-        {/* Video Section - Landscape orientation */}
-        <div className="relative max-w-2xl mx-auto mb-8">
+          {/* Placeholder to mark natural position */}
           <div
-            className="rounded-2xl overflow-hidden shadow-2xl"
-            style={{ aspectRatio: "16/9" }}
-          >
-            <video
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "block",
-                objectFit: "cover",
-              }}
-              autoPlay
-              muted
-              loop
-              playsInline
-            >
-              <source src="assets/videos/video-homepage.mp4" type="video/mp4" />
-            </video>
-          </div>
-          {/* Decorative blurs */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#cd3a6a]/20 rounded-full blur-3xl"></div>
-          <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#6c704c]/20 rounded-full blur-3xl"></div>
-        </div>
+            ref={logoPlaceholderRef}
+            className="mobile-logo"
+            style={{
+              height: logoFixed ? "96px" : "0px", // Height when fixed (80px logo + 16px padding)
+              marginBottom: logoFixed ? "24px" : "0px",
+            }}
+          />
 
-        {/* Subtitle and CTA */}
-        <div className="text-center space-y-6">
-          <p className="font-playfair text-gray-600 max-w-3xl mx-auto">
-            Модерни решения за продажба на свежи цветя по всяко време. Премиум
-            технология, която работи за вас денонощно.
-          </p>
-          <button
-            onClick={scrollToTechnology}
-            className="font-playfair bg-[#cd3a6a] text-white rounded-full hover:bg-[#cd3a6a]/90 transition-colors inline-flex items-center gap-2 cursor-pointer font-semibold text-lg shadow-lg hover:shadow-xl"
-            style={{ padding: "16px 48px" }}
+          {/* Actual logo that becomes fixed */}
+          <div
+            ref={logoRef}
+            className="mobile-logo"
+            style={{
+              position: logoFixed ? "fixed" : "relative",
+              top: logoFixed ? "2px" : "0px",
+              left: logoFixed ? "50%" : "auto",
+              transform: logoFixed ? "translateX(-50%)" : "none",
+              zIndex: 90,
+              paddingTop: "8px",
+              textAlign: "center",
+              width: logoFixed ? "auto" : "100%",
+            }}
           >
-            Виж повече
-          </button>
+            <button
+              onClick={scrollToTop}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                cursor: "pointer",
+                transition: "opacity 0.3s",
+                border: "none",
+                background: "none",
+                padding: 0,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.8")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              <div
+                style={{
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "white",
+                  overflow: "hidden",
+                  width: "80px",
+                  height: "80px",
+                  border: "1px solid rgba(108, 112, 76, 0.3)",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src="assets/bloombox-logo.svg"
+                  alt="BloomBox Logo"
+                  style={{
+                    width: "56px",
+                    height: "56px",
+                    objectFit: "contain",
+                  }}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                  }}
+                />
+              </div>
+            </button>
+          </div>
+
+          {/* Hero Title */}
+          <style>{`
+            .hero-title-spacing { margin-top: 0px; }
+            @media (min-width: 886px) {
+              .hero-title-spacing { margin-top: 48px; }
+            }
+          `}</style>
+          <div className="text-center mb-8 hero-title-spacing">
+            <h1
+              className="font-playfair text-[#6c704c] leading-tight"
+              style={{ fontWeight: 700, fontSize: "24px" }}
+            >
+              Вендинг машини за свежи цветя - 24/7 продажби без персонал
+            </h1>
+          </div>
+
+          {/* Video Section - Landscape orientation */}
+          <div className="relative max-w-2xl mx-auto mb-8">
+            <div
+              className="rounded-2xl overflow-hidden shadow-2xl"
+              style={{ aspectRatio: "16/9" }}
+            >
+              <video
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "block",
+                  objectFit: "cover",
+                }}
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                <source src="assets/videos/video-homepage.mp4" type="video/mp4" />
+              </video>
+            </div>
+            {/* Decorative blurs */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#cd3a6a]/20 rounded-full blur-3xl"></div>
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-[#6c704c]/20 rounded-full blur-3xl"></div>
+          </div>
+
+          {/* Subtitle and CTA */}
+          <div className="text-center space-y-6">
+            <p className="font-playfair text-gray-600 max-w-3xl mx-auto">
+              Модерни решения за продажба на свежи цветя по всяко време. Премиум
+              технология, която работи за вас денонощно.
+            </p>
+            <button
+              onClick={scrollToTechnology}
+              className="font-playfair bg-[#cd3a6a] text-white rounded-full hover:bg-[#cd3a6a]/90 transition-colors inline-flex items-center gap-2 cursor-pointer font-semibold text-lg shadow-lg hover:shadow-xl"
+              style={{ padding: "16px 48px" }}
+            >
+              Виж повече
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

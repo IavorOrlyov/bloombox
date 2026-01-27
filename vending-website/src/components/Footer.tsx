@@ -4,8 +4,8 @@ import {
   MapPin,
   Facebook,
   Instagram,
-  Linkedin,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import React from "react";
 
 export function Footer() {
@@ -106,9 +106,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/60 text-sm">
+        <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/60 text-sm space-y-2">
           <p className="font-playfair">
             &copy; 2025 BloomBox Vending. Всички права запазени.
+          </p>
+          <p className="font-playfair">
+            <Link
+              to="/privacy"
+              className="text-white/80 hover:text-white underline underline-offset-2 transition-colors"
+            >
+              Политика за поверителност
+            </Link>
           </p>
         </div>
       </div>
