@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown } from "lucide-react";
 import {
   LANGUAGES,
@@ -64,25 +65,45 @@ const NAMES: Record<Language, string> = {
 export function LanguageSwitcher() {
   const { language, setLanguage, t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, right: 0 });
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
-    const handlePointerDown = (event: MouseEvent) => {
-      if (!containerRef.current?.contains(event.target as Node)) {
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (
+        !buttonRef.current?.contains(target) &&
+        !menuRef.current?.contains(target)
+      ) {
         setIsOpen(false);
       }
     };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setIsOpen(false);
     };
-    document.addEventListener("mousedown", handlePointerDown);
+    const close = () => setIsOpen(false);
+    document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", close, true);
     return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", close, true);
     };
   }, [isOpen]);
+
+  const handleToggle = () => {
+    if (!isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      setMenuPosition({
+        top: rect.bottom + 4,
+        right: window.innerWidth - rect.right,
+      });
+    }
+    setIsOpen((open) => !open);
+  };
 
   const handleSelect = (code: Language) => {
     setLanguage(code);
@@ -90,10 +111,11 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div ref={containerRef} style={{ position: "relative", display: "inline-block" }}>
+    <div style={{ display: "inline-block" }}>
       <button
+        ref={buttonRef}
         type="button"
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={handleToggle}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={t.nav.language}
@@ -125,16 +147,18 @@ export function LanguageSwitcher() {
         />
       </button>
 
-      {isOpen && (
+      {isOpen &&
+        createPortal(
         <ul
+          ref={menuRef}
           role="listbox"
           aria-label={t.nav.language}
           style={{
-            position: "absolute",
-            right: 0,
-            top: "calc(100% + 4px)",
-            zIndex: 200,
-            minWidth: "100%",
+            position: "fixed",
+            right: menuPosition.right,
+            top: menuPosition.top,
+            zIndex: 10000,
+            minWidth: "96px",
             margin: 0,
             padding: "4px",
             listStyle: "none",
@@ -176,8 +200,9 @@ export function LanguageSwitcher() {
               </li>
             );
           })}
-        </ul>
-      )}
+        </ul>,
+        document.body
+        )}
     </div>
   );
 }
