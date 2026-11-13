@@ -6,9 +6,11 @@ import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import { CookieConsent } from "./components/CookieConsent";
 import React from "react";
+import { LanguageProvider } from "./i18n/LanguageContext";
 
 export default function App() {
   return (
+    <LanguageProvider>
     <div className="min-h-screen bg-white">
       <Header />
       <FlowerGallery />
@@ -18,5 +20,6 @@ export default function App() {
       <Footer />
       <CookieConsent />
     </div>
+    </LanguageProvider>
   );
 }
