@@ -131,6 +131,7 @@ export const en: Translations = {
     tagline: "Your reliable partner in selling flowers 24/7",
     contacts: "Contacts",
     location: "Sofia, Bulgaria",
+    privacy: "Privacy policy",
     rights: "All rights reserved.",
   },
   cookie: {

@@ -132,6 +132,7 @@ export const ro: Translations = {
     tagline: "Partenerul dumneavoastră de încredere în vânzarea de flori 24/7",
     contacts: "Contact",
     location: "Sofia, Bulgaria",
+    privacy: "Politica de confidențialitate",
     rights: "Toate drepturile rezervate.",
   },
   cookie: {

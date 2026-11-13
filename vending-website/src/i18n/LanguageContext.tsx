@@ -32,7 +32,10 @@ function languageFromUrl(): Language | null {
 }
 
 function updateUrl(language: Language): void {
-  const { search, hash } = window.location;
+  const { pathname, search, hash } = window.location;
+  const firstSegment = pathname.split("/")[1]?.toLowerCase() ?? "";
+  const isHomeUrl = pathname === "/" || (isLanguage(firstSegment) && pathname.replace(/\/+$/, "") === `/${firstSegment}`);
+  if (!isHomeUrl) return; // e.g. /privacy keeps its own path
   try {
     window.history.replaceState(null, "", `/${language}/${search}${hash}`);
   } catch {
