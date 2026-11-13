@@ -3,8 +3,11 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import React from "react";
+import { useTranslation } from "../i18n/LanguageContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
   const isPrivacyPage = pathname === "/privacy";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,10 +51,10 @@ export function Header() {
   };
 
   const menuItems = [
-    { label: "Защо BloomBox?", id: "why-choose" },
-    { label: "Технология", id: "technology" },
-    { label: "Въпроси", id: "faq" },
-    { label: "Контакти", id: "contact-form" },
+    { label: t.nav.why, id: "why-choose" },
+    { label: t.nav.technology, id: "technology" },
+    { label: t.nav.faq, id: "faq" },
+    { label: t.nav.contact, id: "contact-form" },
   ];
 
   return (
@@ -173,8 +176,12 @@ export function Header() {
               className="flex items-center justify-end"
               style={{ flex: "0 0 auto", marginLeft: "auto" }}
             >
+              <div className="md:hidden" style={{ marginRight: "8px" }}>
+                <LanguageSwitcher />
+              </div>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label={t.nav.menu}
                 className="text-[#6c704c] cursor-pointer md:hidden"
               >
                 {mobileMenuOpen ? (
@@ -228,8 +235,9 @@ export function Header() {
                 onClick={scrollToForm}
                 className="font-playfair bg-[#cd3a6a] text-white rounded-lg hover:bg-[#cd3a6a]/90 transition-colors cursor-pointer font-semibold nav-cta-text whitespace-nowrap"
               >
-                Свържи се с нас
+                {t.nav.contactCta}
               </button>
+              <LanguageSwitcher />
             </div>
           </div>
 
@@ -259,7 +267,7 @@ export function Header() {
                 className="font-playfair w-full bg-[#cd3a6a] text-white rounded-lg hover:bg-[#cd3a6a]/90 transition-colors cursor-pointer font-semibold"
                 style={{ padding: "12px 24px", marginTop: "8px" }}
               >
-                Свържи се с нас
+                {t.nav.contactCta}
               </button>
             </div>
           )}
@@ -363,7 +371,7 @@ export function Header() {
               className="font-playfair text-[#6c704c] leading-tight"
               style={{ fontWeight: 700, fontSize: "24px" }}
             >
-              Вендинг машини за свежи цветя - 24/7 продажби без персонал
+              {t.hero.title}
             </h1>
           </div>
 
@@ -396,15 +404,14 @@ export function Header() {
           {/* Subtitle and CTA */}
           <div className="text-center space-y-6">
             <p className="font-playfair text-gray-600 max-w-3xl mx-auto">
-              Модерни решения за продажба на свежи цветя по всяко време. Премиум
-              технология, която работи за вас денонощно.
+              {t.hero.subtitle}
             </p>
             <button
               onClick={scrollToTechnology}
               className="font-playfair bg-[#cd3a6a] text-white rounded-full hover:bg-[#cd3a6a]/90 transition-colors inline-flex items-center gap-2 cursor-pointer font-semibold text-lg shadow-lg hover:shadow-xl"
               style={{ padding: "16px 48px" }}
             >
-              Виж повече
+              {t.hero.more}
             </button>
           </div>
         </div>

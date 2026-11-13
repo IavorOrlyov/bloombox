@@ -10,43 +10,26 @@ import {
   // ChevronRight,
 } from "lucide-react";
 import React from "react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 const features = [
   {
     icon: Clock,
-    title: "24/7 автоматични продажби",
-    description:
-      "Цветя на разположение по всяко време — удобно, елегантно и без персонал.",
   },
   {
     icon: Thermometer,
-    title: "Патентована технология за дълготрайна свежест",
-    description:
-      "Равномерно охлаждане благодарение на оптимизиран въздушен поток, който удължава живота на цветята.",
   },
   {
     icon: Sparkles,
-    title: "Антифог и висококачествено кристално стъкло",
-    description:
-      "Ясна видимост без запотяване – витрина, която винаги изглежда перфектно.",
   },
   {
     icon: Monitor,
-    title: "Премиум 21.5'' тъчскрийн дисплей",
-    description:
-      "Модерен, ярък и интуитивен интерфейс за high-end shopping experience.",
   },
   {
     icon: Smartphone,
-    title: "Система за отдалечен мониторинг",
-    description:
-      "Проследяване на наличности, продажби и температура в реално време.",
   },
   {
     icon: Pencil,
-    title: "Персонализация и брандинг по ваш вкус",
-    description:
-      "Машината може да бъде изцяло персонализирана – от цветовете и печата до LED акценти и интерфейс.",
   },
 ];
 
@@ -60,6 +43,7 @@ const features = [
 // ];
 
 export function Technology() {
+  const { t } = useTranslation();
   // const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
@@ -126,8 +110,8 @@ export function Technology() {
                 style={{ width: "100%", maxWidth: "400px", height: "500px" }}
               >
                 <img
-                  src="assets/new-1.jpeg"
-                  alt="Vending machine"
+                  src="assets/new-1.jpg"
+                  alt={t.technology.imageAlt}
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
@@ -212,11 +196,11 @@ export function Technology() {
                     lineHeight: "1.2",
                   }}
                 >
-                  Нашата{" "}
+                  {t.technology.titlePrefix}{" "}
                   <span style={{ fontWeight: 500, fontStyle: "italic" }}>
                     HIGH-END
-                  </span>{" "}
-                  технология
+                  </span>
+                  {t.technology.titleSuffix && ` ${t.technology.titleSuffix}`}
                 </h2>
                 <div className="relative mx-auto" style={{ maxWidth: "800px" }}>
                   <div
@@ -241,11 +225,11 @@ export function Technology() {
                         <feature.icon className="w-6 h-6 text-white" />
                       </div>
                       <h3 className="font-playfair text-[#6c704c] text-base font-semibold">
-                        {feature.title}
+                        {t.technology.features[index].title}
                       </h3>
                     </div>
                     <p className="font-playfair text-gray-600 text-sm leading-relaxed">
-                      {feature.description}
+                      {t.technology.features[index].description}
                     </p>
                   </div>
                 ))}

@@ -2,10 +2,42 @@
   import { defineConfig } from 'vite';
   import react from '@vitejs/plugin-react-swc';
   import path from 'path';
+import fs from 'fs';
+
+const LANGUAGE_PATHS = ['bg', 'en', 'ro'];
+
+// GitHub Pages cannot rewrite /en to index.html, so emit a real page per language.
+function languagePages() {
+  let outDir = 'build';
+  return {
+    name: 'language-pages',
+    apply: 'build' as const,
+    configResolved(config: { build: { outDir: string } }) {
+      outDir = config.build.outDir;
+    },
+    closeBundle() {
+      const source = fs.readFileSync(path.join(outDir, 'index.html'), 'utf-8');
+      for (const lang of LANGUAGE_PATHS) {
+        const page = source
+          .replace('<html lang="bg">', `<html lang="${lang}">`)
+          .replace(
+            /(<link rel="canonical" href=")[^"]*(")/,
+            `$1https://bloomboxvending.com/${lang}/$2`
+          )
+          .replace(
+            /(<meta property="og:url" content=")[^"]*(")/,
+            `$1https://bloomboxvending.com/${lang}/$2`
+          );
+        fs.mkdirSync(path.join(outDir, lang), { recursive: true });
+        fs.writeFileSync(path.join(outDir, lang, 'index.html'), page);
+      }
+    },
+  };
+}
 
   export default defineConfig(({ command }) => ({
     base: './',
-    plugins: [react()],
+    plugins: [react(), languagePages()],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {

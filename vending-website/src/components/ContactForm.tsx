@@ -1,7 +1,9 @@
 import React, { useState, FormEvent, ChangeEvent } from "react";
 import { Send, Check, Loader2 } from "lucide-react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function ContactForm() {
+  const { t } = useTranslation();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -26,7 +28,7 @@ export function ContactForm() {
       const formDataToSend = new FormData(form);
 
       // Add a subject line
-      formDataToSend.append("_subject", "Ново запитване от BloomBox Vending");
+      formDataToSend.append("_subject", t.contact.emailSubject);
 
       // Prevent FormSubmit from showing a redirect page
       if (typeof window !== "undefined") {
@@ -53,9 +55,7 @@ export function ContactForm() {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
-      setSubmitError(
-        "Възникна грешка при изпращането. Моля, опитайте отново или се свържете директно."
-      );
+      setSubmitError(t.contact.error);
       console.error("Form submission error:", error);
     } finally {
       setIsSubmitting(false);
@@ -84,7 +84,7 @@ export function ContactForm() {
                 className="font-playfair text-center text-[#6c704c] mb-8 text-3xl md:text-4xl lg:text-5xl"
                 style={{ fontWeight: 700, fontSize: "24px" }}
               >
-                Изпратете запитване за вендинг машина за цветя
+                {t.contact.title}
               </h2>
 
               <form
@@ -97,7 +97,7 @@ export function ContactForm() {
                 <input
                   type="hidden"
                   name="_subject"
-                  value="Ново запитване от BloomBox Vending"
+                  value={t.contact.emailSubject}
                 />
                 <input
                   type="hidden"
@@ -113,7 +113,7 @@ export function ContactForm() {
                     htmlFor="name"
                     className="font-playfair block text-[#6c704c] mb-2 font-medium"
                   >
-                    Име и фамилия <span className="text-[#cd3a6a]">*</span>
+                    {t.contact.name} <span className="text-[#cd3a6a]">*</span>
                   </label>
                   <input
                     type="text"
@@ -131,7 +131,7 @@ export function ContactForm() {
                     htmlFor="email"
                     className="font-playfair block text-[#6c704c] mb-2 font-medium"
                   >
-                    Имейл <span className="text-[#cd3a6a]">*</span>
+                    {t.contact.email} <span className="text-[#cd3a6a]">*</span>
                   </label>
                   <input
                     type="email"
@@ -149,7 +149,7 @@ export function ContactForm() {
                     htmlFor="city"
                     className="font-playfair block text-[#6c704c] mb-2 font-medium"
                   >
-                    Град
+                    {t.contact.city}
                   </label>
                   <input
                     type="text"
@@ -166,7 +166,7 @@ export function ContactForm() {
                     htmlFor="phone"
                     className="font-playfair block text-[#6c704c] mb-2 font-medium"
                   >
-                    Телефонен номер
+                    {t.contact.phone}
                   </label>
                   <input
                     type="tel"
@@ -183,7 +183,7 @@ export function ContactForm() {
                     htmlFor="message"
                     className="font-playfair block text-[#6c704c] mb-2 font-medium"
                   >
-                    Вашето съобщение
+                    {t.contact.message}
                   </label>
                   <textarea
                     id="message"
@@ -208,12 +208,12 @@ export function ContactForm() {
                 >
                   {isSubmitting ? (
                     <>
-                      Изпращане...
+                      {t.contact.submitting}
                       <Loader2 className="w-5 h-5 animate-spin" />
                     </>
                   ) : (
                     <>
-                      Изпрати запитване
+                      {t.contact.submit}
                       <Send className="w-5 h-5" />
                     </>
                   )}
@@ -226,10 +226,10 @@ export function ContactForm() {
                 <Check className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-playfair text-[#6c704c] mb-3 text-xl font-semibold">
-                Благодарим за запитването!
+                {t.contact.thanksTitle}
               </h3>
               <p className="font-playfair text-gray-600">
-                Ще се свържем с вас в рамките на 24 часа.
+                {t.contact.thanksText}
               </p>
             </div>
           )}

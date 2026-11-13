@@ -7,6 +7,7 @@ import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 import { CookieConsent } from "./components/CookieConsent";
 import { Privacy } from "./pages/Privacy";
+import { LanguageProvider, LANGUAGES } from "./i18n/LanguageContext";
 import React, { useEffect } from "react";
 
 function Layout() {
@@ -40,12 +41,21 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="privacy" element={<Privacy />} />
-        </Route>
-      </Routes>
+      <LanguageProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="privacy" element={<Privacy />} />
+            {/* Language-prefixed URLs (/bg, /en, /ro) for ad campaigns */}
+            {LANGUAGES.map((code) => (
+              <Route key={code} path={code}>
+                <Route index element={<Home />} />
+                <Route path="privacy" element={<Privacy />} />
+              </Route>
+            ))}
+          </Route>
+        </Routes>
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

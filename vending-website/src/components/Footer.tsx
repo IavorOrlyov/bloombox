@@ -7,8 +7,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import React from "react";
+import { useTranslation } from "../i18n/LanguageContext";
 
 export function Footer() {
+  const { t } = useTranslation();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -52,14 +54,14 @@ export function Footer() {
               </span>
             </button>
             <p className="font-playfair text-white/80">
-              Вашият надежден партньор в продажбата на цветя 24/7
+              {t.footer.tagline}
             </p>
           </div>
 
           {/* Contacts */}
           <div>
             <h3 className="font-playfair mb-4 text-lg font-semibold">
-              Контакти
+              {t.footer.contacts}
             </h3>
             <div className="space-y-3">
               <a
@@ -78,7 +80,7 @@ export function Footer() {
               </a>
               <div className="font-playfair flex items-center gap-3 text-white/80">
                 <MapPin className="w-5 h-5" />
-                <span>София, България</span>
+                <span>{t.footer.location}</span>
               </div>
 
               {/* Social Media */}
@@ -108,14 +110,14 @@ export function Footer() {
 
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/60 text-sm space-y-2">
           <p className="font-playfair">
-            &copy; 2025 BloomBox Vending. Всички права запазени.
+            &copy; 2025 BloomBox Vending. {t.footer.rights}
           </p>
           <p className="font-playfair">
             <Link
               to="/privacy"
               className="text-white/80 hover:text-white underline underline-offset-2 transition-colors"
             >
-              Политика за поверителност
+              {t.footer.privacy}
             </Link>
           </p>
         </div>
